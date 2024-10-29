@@ -32,11 +32,9 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 ## Pré-requisitos
 
-Node.js (>= 14.x)
-    
-Expo CLI (>= 5.x): 
-    
-    npm install -g expo-cli
+Node.js (>= 20.x)
+
+NPM (>= 10.x)
 
 Um dispositivo ou emulador para testar o app
 
