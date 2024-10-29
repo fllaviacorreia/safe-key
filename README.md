@@ -44,7 +44,7 @@ Um dispositivo ou emulador para testar o app
 
   ### Clone o repositório:
 
-    git clone https://github.com/seu-usuario/safe-key.git
+    git clone https://github.com/fllaviacorreia/safe-key.git
 
   ### Acesse o diretório do projeto:
   
