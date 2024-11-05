@@ -4,7 +4,7 @@ import { theme } from "../../theme";
 const global = StyleSheet.create({
     text: {
         color: theme.light.text,
-        fontSize: 14,
+        fontSize: 20,
         fontWeight: '600',
         marginBottom: 5,
         marginTop: 10,
@@ -12,11 +12,11 @@ const global = StyleSheet.create({
     },
     title: {
         color: theme.light.text,
-        fontSize: 18,
-        fontWeight: '600',
-        marginBottom: 5,
-        marginTop: 10,
+        fontSize: 24,
         fontFamily: 'Title',
+    },
+    background: {
+        backgroundColor: theme.light.background,
     }
 });
 
