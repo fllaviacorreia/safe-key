@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // Importa as telas de Login e Registro para uso na navegação
 import LoginScreen from "../screens/login";
 import RegisterScreen from "../screens/register";
+import ResetPasswordScreen from "../screens/resetPassword";
 
 // Cria uma instância do stack navigator, que gerencia a navegação em pilha
 const Stack = createNativeStackNavigator();
@@ -25,6 +26,9 @@ export default function AppNavigation() {
                 
                 {/* Define a tela de Register como outra rota no stack navigator */}
                 <Stack.Screen name="Register" component={RegisterScreen} />
+
+                {/* Define a tela de ResetPassword como outra rota no stack navigator */}
+                <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
                 
             </Stack.Navigator>
         </NavigationContainer>

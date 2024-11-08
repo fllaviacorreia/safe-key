@@ -12,16 +12,15 @@ import Input from "../../components/inputs/input";
 import { useRef } from "react";
 
 // Define o tipo de navegação para a tela de registro
-type registerParamsList = NativeStackNavigationProp<RoutesParams, 'Register'>;
+type registerParamsList = NativeStackNavigationProp<RoutesParams, 'ResetPassword'>;
 
 // Função principal do componente RegisterScreen
-export default function RegisterScreen() {
+export default function ResetPasswordScreen() {
 
     // Configura a navegação usando o hook useNavigation com o tipo registerParamsList
     const navigation = useNavigation<registerParamsList>();
 
     // Criação de referências para os inputs
-    const usernameRef = useRef<TextInput>(null);
     const passwordRef = useRef<TextInput>(null);
     const confirmPasswordRef = useRef<TextInput>(null);
 
@@ -40,24 +39,16 @@ export default function RegisterScreen() {
                 {/* Container para o formulário de cadastro */}
                 <View style={styles.containerForm}>
                     <Input
-                        title="Nome"
-                        placeholder="Seu nome completo"
-                        id="name"
-                        returnKeyType="next"
-                        onSubmitEditing={() => usernameRef.current?.focus()}
-                    />
-                    <Input
                         title="Usuário ou e-mail"
                         keyboardType="email-address"
                         placeholder="Seu nome de usuário"
                         id="username"
-                        ref={usernameRef}
                         onSubmitEditing={() => passwordRef.current?.focus()}
                         returnKeyType="next"
                     />
                     <Input
-                        title="Senha"
-                        placeholder="Sua senha"
+                        title="Nova senha"
+                        placeholder="Sua nova senha"
                         secureTextEntry
                         id="password"
                         ref={passwordRef}
@@ -65,14 +56,14 @@ export default function RegisterScreen() {
                         returnKeyType="next"
                     />
                     <Input
-                        title="Confirmar senha"
+                        title="Confirmar nova senha"
                         placeholder="Insira novamente sua senha"
                         id="confirmPassword"
                         ref={confirmPasswordRef}
                         secureTextEntry
                         returnKeyType="done"
                     />
-                    <Button title="Cadastrar" className="primary" />
+                    <Button title="Alterar senha" className="primary" onPress={() => navigation.navigate("Login")}/>
                 </View>
                 <View style={styles.containerButtons}>
                     <Button title="Cancelar" className="warning" onPress={() => navigation.navigate("Login")} />
