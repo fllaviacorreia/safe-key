@@ -1,5 +1,5 @@
 // Importa os componentes Text e View do React Native, além dos componentes personalizados Input e Button
-import { Text, View } from "react-native";
+import { Text, View, TextInput } from "react-native";
 import Input from "../../components/inputs/input";
 import Button from "../../components/buttons/button";
 import { RoutesParams } from "../../navigation/routesParams";
@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import Checkbox from "expo-checkbox";
 import styles from "./styles";
 import global from "../../styles/global";
+import { useRef } from "react";
 
 // Define o tipo de navegação para a tela de Login
 type loginParamsList = NativeStackNavigationProp<RoutesParams, "Login">;
@@ -18,26 +19,42 @@ export default function LoginScreen() {
     // Configura a navegação usando o hook useNavigation com o tipo loginParamsList
     const navigation = useNavigation<loginParamsList>();
 
+    // Criação de referências para os inputs
+    const passwordRef = useRef<TextInput>(null);
+
     return (
-        <View style={styles.container}>
+        <View style={global.container}>
             
             {/* Container para o título do aplicativo */}
             <View style={styles.containerTitle}>
-                <Text style={[global.title, styles.title]}>SafeKey</Text> {/* Título estilizado */}
+                {/* Título estilizado */}
+                <Text style={[global.title, styles.title]}>SafeKey</Text> 
             </View>
             
             {/* Container para o formulário de login */}
             <View style={styles.containerForm}>
                 
                 {/* Campo de entrada para o usuário com um título e um placeholder */}
-                <Input title="Usuário" placeholder='Seu nome de usuário' />
+                <Input 
+                    title="Usuário" 
+                    placeholder="Seu nome de usuário" 
+                    returnKeyType="next" 
+                    onSubmitEditing={() => passwordRef.current?.focus()} 
+                />
                 
                 {/* Campo de entrada para a senha com secureTextEntry para ocultar a senha */}
-                <Input title="Senha" placeholder='Sua senha' secureTextEntry />
+                <Input 
+                    title="Senha" 
+                    placeholder="Sua senha" 
+                    secureTextEntry 
+                    ref={passwordRef} 
+                    returnKeyType="done" 
+                />
                 
                 {/* Container para a opção de manter o usuário conectado */}
                 <View style={styles.containerCheckbox}>
-                    <Checkbox /> {/* Checkbox para a opção "Mantenha-me conectado" */}
+                    {/* Checkbox para a opção "Mantenha-me conectado" */}
+                    <Checkbox /> 
                     <Text style={[styles.textCheckbox, global.text]}>Mantenha-me conectado</Text>
                 </View>
                 

@@ -8,13 +8,14 @@ const styles = StyleSheet.create({
     // Estilo do contêiner principal do botão, definindo largura e altura
     container: {
         width: '100%',  // Largura total
-        height: 50,     // Altura fixa do contêiner
+        height: 65,     // Altura fixa do contêiner
+        paddingVertical: 10, // Margem vertical para separar do texto ou outros elementos
     },
 
     // Estilo base do botão, aplicado em conjunto com os estilos específicos (ex: primary, warning)
     button: {
         width: '100%',             // Largura total do botão
-        height: 50,                // Altura fixa do botão
+        height: 45,                // Altura fixa do botão
         borderRadius: 25,          // Bordas arredondadas para uma aparência circular
         alignItems: 'center',      // Alinhamento centralizado do conteúdo horizontalmente
         justifyContent: 'center',  // Alinhamento centralizado do conteúdo verticalmente
