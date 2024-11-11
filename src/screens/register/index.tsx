@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 import global from "../../styles/global";
 import Input from "../../components/inputs/input";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 // Define o tipo de navegação para a tela de registro
 type registerParamsList = NativeStackNavigationProp<RoutesParams, 'Register'>;
@@ -21,9 +21,17 @@ export default function RegisterScreen() {
     const navigation = useNavigation<registerParamsList>();
 
     // Criação de referências para os inputs
+    const nameRef = useRef<TextInput>(null);
     const usernameRef = useRef<TextInput>(null);
     const passwordRef = useRef<TextInput>(null);
     const confirmPasswordRef = useRef<TextInput>(null);
+
+    useEffect(() => {
+        // Foca no input assim que a tela é montada
+        if (nameRef.current) {
+            nameRef.current.focus();
+        }
+    }, []);
 
     return (
         <KeyboardAvoidingView
@@ -43,6 +51,7 @@ export default function RegisterScreen() {
                         title="Nome"
                         placeholder="Seu nome completo"
                         id="name"
+                        ref={nameRef}
                         returnKeyType="next"
                         onSubmitEditing={() => usernameRef.current?.focus()}
                     />

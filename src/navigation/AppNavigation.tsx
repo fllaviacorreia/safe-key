@@ -10,10 +10,15 @@ import HomeScreen from "../screens/home";
 import { useState } from "react";
 import { Appbar, Menu, Provider } from "react-native-paper";
 import { RoutesParams } from "./routesParams";
+import ProfileScreen from "../screens/profile";
+import NewKeyScreen from "../screens/newKey";
+import EditKeyScreen from "../screens/editKey";
 
+import global from "../styles/global";
+import EditProfileScreen from "../screens/profile/edit";
 // Cria uma instância do stack navigator, que gerencia a navegação em pilha
 const Stack = createNativeStackNavigator();
-type ModalParamsList = NativeStackNavigationProp<RoutesParams, "Home">;
+type ModalParamsList = NativeStackNavigationProp<RoutesParams>;
 // Função principal que configura a navegação da aplicação
 export default function AppNavigation() {
     // Componente de Menu para o header
@@ -23,6 +28,12 @@ export default function AppNavigation() {
         const openMenu = () => setVisible(true);
         const closeMenu = () => setVisible(false);
         const navigation = useNavigation<ModalParamsList>();
+
+        const goToProfile = () => {
+            closeMenu()
+            navigation.navigate("Profile");
+        }
+
         return (
             <Menu
                 visible={visible}
@@ -32,7 +43,7 @@ export default function AppNavigation() {
                     <Appbar.Action icon="menu" color="black" onPress={openMenu} />
                 }
             >
-                <Menu.Item onPress={() => navigation.navigate("Profile")} title="Perfil" />
+                <Menu.Item onPress={() => goToProfile()} title="Perfil" />
                 <Menu.Item onPress={() => navigation.navigate("Login")} title="Sair" />
             </Menu>
         );
@@ -44,7 +55,7 @@ export default function AppNavigation() {
 
                 {/* Configura o stack navigator com as telas de Login, Register, ResetPassword e Home.
                 Define screenOptions para ocultar o cabeçalho padrão em todas as telas, exceto onde especificado */}
-                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
 
                     {/* Define a tela de Login como um "Screen" no stack navigator */}
                     <Stack.Screen name="Login" component={LoginScreen} />
@@ -63,8 +74,46 @@ export default function AppNavigation() {
                             headerShown: true,
                             title: "SafeKey",
                             headerRight: () => <MenuHeader />,
-                            headerBackVisible: false
+                            headerBackVisible: false,
+                            headerTitleStyle: {fontFamily: 'Title'}
                         }}
+                    />
+                    <Stack.Screen 
+                        name="Profile" 
+                        component={ProfileScreen} 
+                        options={{
+                            headerShown: true,
+                            title: "Meu perfil",
+                            headerTitleStyle: {fontFamily: 'Title'}
+                        }}
+                    />
+                    <Stack.Screen 
+                        name="EditProfile" 
+                        component={EditProfileScreen} 
+                        options={{
+                            headerShown: true,
+                            title: "Editando perfil",   
+                            headerTitleStyle: {fontFamily: 'Title'}
+                        }}
+                    />
+
+                    <Stack.Screen 
+                        name="NewKey" 
+                        component={NewKeyScreen} 
+                        options={{
+                                headerShown: true, 
+                                title: "Novo registro", 
+                                headerTitleStyle: {fontFamily: 'Title'}
+
+                            }} 
+                    />
+                    <Stack.Screen 
+                        name="EditKey" 
+                        component={EditKeyScreen} 
+                        options={{
+                                headerShown: true, 
+                                title: "Detalhes", 
+                                headerTitleStyle: {fontFamily: 'Title'},}} 
                     />
                 </Stack.Navigator>
             </NavigationContainer>

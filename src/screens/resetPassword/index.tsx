@@ -1,5 +1,5 @@
 // Importa os componentes Text e View do React Native e o componente personalizado Button
-import { KeyboardAvoidingView, Platform, Text, TextInput, View, ScrollView } from "react-native";
+import { KeyboardAvoidingView, Platform, Text, TextInput, View, ScrollView, ToastAndroid } from "react-native";
 import Button from "../../components/buttons/button";
 
 import { RoutesParams } from "../../navigation/routesParams";
@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 import global from "../../styles/global";
 import Input from "../../components/inputs/input";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 // Define o tipo de navegação para a tela de registro
 type registerParamsList = NativeStackNavigationProp<RoutesParams, 'ResetPassword'>;
@@ -21,9 +21,21 @@ export default function ResetPasswordScreen() {
     const navigation = useNavigation<registerParamsList>();
 
     // Criação de referências para os inputs
+    const usernameRef = useRef<TextInput>(null);
     const passwordRef = useRef<TextInput>(null);
     const confirmPasswordRef = useRef<TextInput>(null);
 
+    useEffect(() => {
+        // Foca no input assim que a tela é montada
+        if (usernameRef.current) {
+            usernameRef.current.focus();
+        }
+    })
+
+    const handleUpdatePassword = () => {
+        ToastAndroid.show('Senha alterada com sucesso! Faça login.', ToastAndroid.LONG);
+        navigation.navigate("Login");
+    }
     return (
         <KeyboardAvoidingView
             style={[{ flex: 1 }, global.container]}
@@ -43,8 +55,10 @@ export default function ResetPasswordScreen() {
                         keyboardType="email-address"
                         placeholder="Seu nome de usuário"
                         id="username"
+                        ref={usernameRef}
                         onSubmitEditing={() => passwordRef.current?.focus()}
                         returnKeyType="next"
+                        autoCapitalize="none"  
                     />
                     <Input
                         title="Nova senha"
@@ -54,6 +68,7 @@ export default function ResetPasswordScreen() {
                         ref={passwordRef}
                         onSubmitEditing={() => confirmPasswordRef.current?.focus()}
                         returnKeyType="next"
+                        autoCapitalize="none"  
                     />
                     <Input
                         title="Confirmar nova senha"
@@ -62,8 +77,10 @@ export default function ResetPasswordScreen() {
                         ref={confirmPasswordRef}
                         secureTextEntry
                         returnKeyType="done"
+                        onSubmitEditing={() => handleUpdatePassword()}
+                        autoCapitalize="none"
                     />
-                    <Button title="Alterar senha" className="primary" onPress={() => navigation.navigate("Login")}/>
+                    <Button title="Alterar senha" className="primary" onPress={() => handleUpdatePassword()}/>
                 </View>
                 <View style={styles.containerButtons}>
                     <Button title="Cancelar" className="warning" onPress={() => navigation.navigate("Login")} />

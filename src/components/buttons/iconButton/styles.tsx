@@ -36,6 +36,11 @@ const styles = StyleSheet.create({
     error: {
         backgroundColor: theme.light.error, // Cor de fundo para o botão de erro
     },
+
+    // Estilo para o botão transparente, onde o fundo usa a cor de background do tema
+    transparent: {
+        backgroundColor: theme.light.background, // Cor de fundo transparente
+    },
 });
 
 export default styles;

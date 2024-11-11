@@ -2,21 +2,32 @@ import { Pressable, Text, View } from "react-native";
 import styles from "./styles";
 import global from "../../../styles/global";
 import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RoutesParams } from "../../../navigation/routesParams";
 
-type CardProps = {
+type data = {
     title: string;
     createdAt: string;
     id: string;
+    username: string;
+    password: string;
 }
-export default function Card({ title, createdAt, id }: CardProps) {
+
+type CardProps = {
+    data: data;
+}
+export default function Card({ data }: CardProps) {
+    const navigation = useNavigation<NativeStackNavigationProp<RoutesParams>>();
+
     return (
-        <View style={styles.container} id={id}>
+        <View style={styles.container}>
             <View style={styles.dataContainer}>
-                <Text style={global.title}>{title}</Text>
-                <Text style={[global.text, styles.date]}>{createdAt}</Text>
+                <Text style={global.title}>{data.title}</Text>
+                <Text style={[global.text, styles.date]}>{data.createdAt}</Text>
             </View>
             <View style={styles.separator}>
-                <Pressable onPress={() => alert("Clicou no botão")}>
+                <Pressable onPress={() => navigation.navigate('EditKey', {...data })}>
                 <FontAwesome name="angle-double-right" size={24} color="black" />
                 </Pressable>
             </View>

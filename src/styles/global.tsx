@@ -16,7 +16,6 @@ const global = StyleSheet.create({
         fontFamily: 'Title',
     },
     container: {
-        flex: 1,
         width: '100%',                      // Largura total da tela
         paddingHorizontal: 20,              // Espaçamento nas laterais
         paddingTop: 40,

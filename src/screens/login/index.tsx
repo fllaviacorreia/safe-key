@@ -39,7 +39,8 @@ export default function LoginScreen() {
                     title="Usuário" 
                     placeholder="Seu nome de usuário" 
                     returnKeyType="next" 
-                    onSubmitEditing={() => passwordRef.current?.focus()} 
+                    onSubmitEditing={() => passwordRef.current?.focus()}
+                    autoCapitalize="none"  
                 />
                 
                 {/* Campo de entrada para a senha com secureTextEntry para ocultar a senha */}
@@ -48,6 +49,7 @@ export default function LoginScreen() {
                     placeholder="Sua senha" 
                     secureTextEntry 
                     ref={passwordRef} 
+                    autoCapitalize="none"  
                     returnKeyType="done" 
                 />
                 

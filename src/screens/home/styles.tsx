@@ -4,6 +4,11 @@ import { theme } from "../../../theme";
 
 // Define os estilos usando StyleSheet.create
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     // Estilo para o contêiner do título
     containerSearch: {
         justifyContent: 'space-around',           // Centraliza verticalmente
@@ -26,6 +31,9 @@ const styles = StyleSheet.create({
 
     // Estilo para o contêiner dos botões de navegação
     containerButtons: {
+        position: 'absolute',
+        bottom: 0,
+        right: 20,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 10,
