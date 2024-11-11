@@ -59,7 +59,7 @@ export default function LoginScreen() {
                 </View>
                 
                 {/* Botão de login */}
-                <Button title="Login" className="primary" />
+                <Button title="Login" className="primary" onPress={() => navigation.navigate("Home")}/>
             </View>
             
             {/* Container para os botões de navegação adicionais */}

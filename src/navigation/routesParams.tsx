@@ -12,4 +12,7 @@ export type RoutesParams = {
     
     // A rota "Home" também não exige parâmetros e, portanto, é "undefined"
     Home: undefined;
+
+    // A rota "Profile" não exige parâmetros e, portanto, é "undefined"
+    Profile: undefined;
 };

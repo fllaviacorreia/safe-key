@@ -19,7 +19,7 @@ const global = StyleSheet.create({
         flex: 1,
         width: '100%',                      // Largura total da tela
         paddingHorizontal: 20,              // Espaçamento nas laterais
-        marginTop: 40,
+        paddingTop: 40,
         backgroundColor: theme.light.background // Cor de fundo, vinda do tema
     }
 });

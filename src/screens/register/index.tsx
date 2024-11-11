@@ -72,7 +72,7 @@ export default function RegisterScreen() {
                         secureTextEntry
                         returnKeyType="done"
                     />
-                    <Button title="Cadastrar" className="primary" />
+                    <Button title="Cadastrar" className="primary" onPress={() => navigation.navigate("Home")} />
                 </View>
                 <View style={styles.containerButtons}>
                     <Button title="Cancelar" className="warning" onPress={() => navigation.navigate("Login")} />
