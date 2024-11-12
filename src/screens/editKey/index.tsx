@@ -18,9 +18,10 @@ type editKeyParamsList = NativeStackNavigationProp<RoutesParams, 'EditKey'>;
 export default function EditKeyScreen({ route }: any) {
     const navigate = useNavigation<editKeyParamsList>();
     const data = route?.params || {};
-
+    console.log(data);
+    console.log("Router params", route.params);
     const [isEditable, setIsEditable] = useState(false); // Inicialmente desabilitado
-
+    
     // Criação de referências para os inputs
     const titleRef = useRef<TextInput>(null);
     const usernameRef = useRef<TextInput>(null);
@@ -119,7 +120,7 @@ export default function EditKeyScreen({ route }: any) {
             </View>
             <View style={styles.buttonsContainer}>
                 <View style={{ width: '40%' }}>
-                    <Button className="warning" title={buttonWarningTitle} onPress={() => navigate.goBack()} />
+                    <Button className="warning" title={buttonWarningTitle} onPress={() => setIsEditable(false)} />
                 </View>
                 <View style={{ width: '40%' }}>
                     <Button className="primary" title={buttonPrimaryTitle} onPress={() => handleSubmit()} />

@@ -8,7 +8,7 @@ export type RoutesParams = {
     Register: undefined;
 
     // A rota "ResetPassword" não requer parâmetros, então também é "undefined"
-    ResetPassword: undefined;
+    // ResetPassword: undefined;
 
     // A rota "Home" também não exige parâmetros e, portanto, é "undefined"
     Home: undefined;

@@ -6,6 +6,7 @@ import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
 import Input from "../../components/inputs/input";
 import styles from "./styles";
+
 type profileParamsList = NativeStackNavigationProp<RoutesParams, 'Profile'>;
 
 export default function ProfileScreen() {

@@ -31,7 +31,11 @@ export default function HomeScreen() {
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item }) => (
                         <View id={item.id.toString()}>
-                            <Card data={{...item, id: item.id.toString()}} />
+                            <Card 
+                                data={{
+                                       ...item, 
+                                        id: item.id.toString()}} 
+                            />
                         </View>
 
                     )}
@@ -40,6 +44,6 @@ export default function HomeScreen() {
             <IconButton className="primary" icon="plus-circle" onPress={() => navigation.navigate('NewKey')} />
                 </View>
         </View>
-
+    
     );
 }

@@ -13,11 +13,15 @@ import { RoutesParams } from "./routesParams";
 import ProfileScreen from "../screens/profile";
 import NewKeyScreen from "../screens/newKey";
 import EditKeyScreen from "../screens/editKey";
-
-import global from "../styles/global";
 import EditProfileScreen from "../screens/profile/edit";
+
+
+
 // Cria uma instância do stack navigator, que gerencia a navegação em pilha
 const Stack = createNativeStackNavigator();
+
+
+
 type ModalParamsList = NativeStackNavigationProp<RoutesParams>;
 // Função principal que configura a navegação da aplicação
 export default function AppNavigation() {

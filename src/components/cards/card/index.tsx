@@ -24,10 +24,10 @@ export default function Card({ data }: CardProps) {
         <View style={styles.container}>
             <View style={styles.dataContainer}>
                 <Text style={global.title}>{data.title}</Text>
-                <Text style={[global.text, styles.date]}>{data.createdAt}</Text>
+                <Text style={[global.text, styles.date]}>Created at {data.createdAt}</Text>
             </View>
             <View style={styles.separator}>
-                <Pressable onPress={() => navigation.navigate('EditKey', {...data })}>
+                <Pressable style={{backgroundColor: '#dedeed'}} onPress={() => navigation.navigate('EditKey', data)}>
                 <FontAwesome name="angle-double-right" size={24} color="black" />
                 </Pressable>
             </View>
