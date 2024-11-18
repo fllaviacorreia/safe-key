@@ -7,10 +7,13 @@ import global from '../../../styles/global';
 // Define o tipo InputProps, que inclui as propriedades de TextInput e uma propriedade personalizada 'title'
 type InputProps = TextInputProps & {
     title: string; // Título que descreve o campo de entrada
+    error: string | undefined;
 };
 
 // Função principal do componente Input com forwardRef
-const Input = forwardRef<TextInput, InputProps>(({ title, ...rest }, ref) => {
+const Input = forwardRef<TextInput, InputProps>(({ title, error, ...rest }, ref) => {
+    const invalid = !!error;
+
     return (
         // Contêiner do input com o estilo básico
         <View style={styles.container}>
@@ -22,6 +25,7 @@ const Input = forwardRef<TextInput, InputProps>(({ title, ...rest }, ref) => {
                 Aplica tanto o estilo específico de 'input' quanto o estilo global de texto.
                 Repassa todas as propriedades adicionais de TextInput usando '...rest'. */}
             <TextInput style={[styles.input, global.text]} ref={ref} {...rest}/>
+            { invalid && <Text style={{color: "red"}}>{error}</Text>}
         </View>
     );
 });
