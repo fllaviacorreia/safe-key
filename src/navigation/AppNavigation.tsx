@@ -14,6 +14,7 @@ import ProfileScreen from "../screens/profile";
 import NewKeyScreen from "../screens/newKey";
 import EditKeyScreen from "../screens/editKey";
 import EditProfileScreen from "../screens/profile/edit";
+import { useAuth } from "../context/authContext";
 
 
 
@@ -53,73 +54,73 @@ export default function AppNavigation() {
         );
     };
 
+    const { isAuthenticated, isFirstAccess } = useAuth();
+
     return (
         <Provider>
             <NavigationContainer>
+                {
+                    isAuthenticated ?
 
-                {/* Configura o stack navigator com as telas de Login, Register, ResetPassword e Home.
-                Define screenOptions para ocultar o cabeçalho padrão em todas as telas, exceto onde especificado */}
-                <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
+                        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
 
-                    {/* Define a tela de Login como um "Screen" no stack navigator */}
-                    <Stack.Screen name="Login" component={LoginScreen} />
+                            <Stack.Screen
+                                name="Home"
+                                component={HomeScreen}
+                                options={{
+                                    headerShown: true,
+                                    title: "SafeKey",
+                                    headerRight: () => <MenuHeader />,
+                                    headerBackVisible: false,
+                                    headerTitleStyle: { fontFamily: 'Title' }
+                                }}
+                            />
+                            <Stack.Screen
+                                name="Profile"
+                                component={ProfileScreen}
+                                options={{
+                                    headerShown: true,
+                                    title: "Meu perfil",
+                                    headerTitleStyle: { fontFamily: 'Title' }
+                                }}
+                            />
+                            <Stack.Screen
+                                name="EditProfile"
+                                component={EditProfileScreen}
+                                options={{
+                                    headerShown: true,
+                                    title: "Editando perfil",
+                                    headerTitleStyle: { fontFamily: 'Title' }
+                                }}
+                            />
 
-                    {/* Define a tela de Register como outra rota no stack navigator */}
-                    <Stack.Screen name="Register" component={RegisterScreen} />
+                            <Stack.Screen
+                                name="NewKey"
+                                component={NewKeyScreen}
+                                options={{
+                                    headerShown: true,
+                                    title: "Novo registro",
+                                    headerTitleStyle: { fontFamily: 'Title' }
 
-                    {/* Define a tela de ResetPassword como outra rota no stack navigator */}
-                    <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
-
-                    {/* Define a tela de Home com um cabeçalho que inclui o menu suspenso */}
-                    <Stack.Screen
-                        name="Home"
-                        component={HomeScreen}
-                        options={{
-                            headerShown: true,
-                            title: "SafeKey",
-                            headerRight: () => <MenuHeader />,
-                            headerBackVisible: false,
-                            headerTitleStyle: {fontFamily: 'Title'}
-                        }}
-                    />
-                    <Stack.Screen 
-                        name="Profile" 
-                        component={ProfileScreen} 
-                        options={{
-                            headerShown: true,
-                            title: "Meu perfil",
-                            headerTitleStyle: {fontFamily: 'Title'}
-                        }}
-                    />
-                    <Stack.Screen 
-                        name="EditProfile" 
-                        component={EditProfileScreen} 
-                        options={{
-                            headerShown: true,
-                            title: "Editando perfil",   
-                            headerTitleStyle: {fontFamily: 'Title'}
-                        }}
-                    />
-
-                    <Stack.Screen 
-                        name="NewKey" 
-                        component={NewKeyScreen} 
-                        options={{
-                                headerShown: true, 
-                                title: "Novo registro", 
-                                headerTitleStyle: {fontFamily: 'Title'}
-
-                            }} 
-                    />
-                    <Stack.Screen 
-                        name="EditKey" 
-                        component={EditKeyScreen} 
-                        options={{
-                                headerShown: true, 
-                                title: "Detalhes", 
-                                headerTitleStyle: {fontFamily: 'Title'},}} 
-                    />
-                </Stack.Navigator>
+                                }}
+                            />
+                            <Stack.Screen
+                                name="EditKey"
+                                component={EditKeyScreen}
+                                options={{
+                                    headerShown: true,
+                                    title: "Detalhes",
+                                    headerTitleStyle: { fontFamily: 'Title' },
+                                }}
+                            />
+                        </Stack.Navigator>
+                        :
+                        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={isFirstAccess ? "Register" : "Login"}>
+                            <Stack.Screen name="Login" component={LoginScreen} />
+                            <Stack.Screen name="Register" component={RegisterScreen} />
+                            <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+                        </Stack.Navigator>
+                }
             </NavigationContainer>
         </Provider>
     );

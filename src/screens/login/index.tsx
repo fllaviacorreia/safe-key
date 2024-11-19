@@ -11,12 +11,14 @@ import global from "../../styles/global";
 import { useRef } from "react";
 import { Formik } from "formik";
 import LoginSchema from "../../validators/login";
+import { useAuth } from "../../context/authContext";
 
 // Define o tipo de navegação para a tela de Login
 type loginParamsList = NativeStackNavigationProp<RoutesParams, "Login">;
 
 // Função principal do componente LoginScreen
 export default function LoginScreen() {
+    const { login } = useAuth();
 
     // Configura a navegação usando o hook useNavigation com o tipo loginParamsList
     const navigation = useNavigation<loginParamsList>();
@@ -24,13 +26,10 @@ export default function LoginScreen() {
     // Criação de referências para os inputs
     const passwordRef = useRef<TextInput>(null);
 
-    const onSubmitting = (value: {username: string, password: string, keepConnected: boolean}) => {
-        try{
-            if(value.username == "e@e.c" && value.password == "123456"){
-                navigation.navigate('Home')
-            }else
-                alert("Email ou senha incorretos.")
-        } catch(e){
+    const onSubmitting = async (value: { username: string, password: string, keepConnected: boolean }) => {
+        try {
+            await login(value);
+        } catch (e) {
             alert("Erro ao logar.")
         }
     }
@@ -83,7 +82,7 @@ export default function LoginScreen() {
                                 />
 
                                 <View style={styles.containerCheckbox}>
-                                    <Checkbox value={values.keepConnected} onValueChange={(value) => setFieldValue('keepConnected', value)}/>
+                                    <Checkbox value={values.keepConnected} onValueChange={(value) => setFieldValue('keepConnected', value)} />
                                     <Text style={[styles.textCheckbox, global.text]}>Mantenha-me conectado</Text>
                                 </View>
 

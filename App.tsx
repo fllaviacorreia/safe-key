@@ -2,11 +2,12 @@ import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import AppNavigation from './src/navigation/AppNavigation';
+import AuthProvider from './src/context/authContext';
 
 export default function App() {
   const [loaded, error] = useFonts({
-    'Title': require('./assets/fonts/Title.ttf'), 
-    'Text': require('./assets/fonts/Text.ttf'),   
+    'Title': require('./assets/fonts/Title.ttf'),
+    'Text': require('./assets/fonts/Text.ttf'),
   });
 
   useEffect(() => {
@@ -22,6 +23,8 @@ export default function App() {
 
   // Renderiza a navegação principal do aplicativo após o carregamento das fontes
   return (
-    <AppNavigation />
+    <AuthProvider>
+      <AppNavigation />
+    </AuthProvider>
   );
 }
