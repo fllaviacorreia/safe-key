@@ -26,7 +26,7 @@ type AuthContextType = {
     forgotPassword: (username: string, password: string) => Promise<void>,
     logout: () => Promise<void>,
     resetData: () => Promise<void>,
-    editProfile: () => Primise<void>,
+    editProfile: () => Promise<void>,
 }
 
 const AuthContext = createContext<AuthContextType>({
